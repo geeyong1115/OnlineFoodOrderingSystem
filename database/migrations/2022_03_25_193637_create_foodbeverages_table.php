@@ -14,7 +14,7 @@ class CreateFoodbeveragesTable extends Migration
     public function up()
     {
         Schema::create('foodbeverages', function (Blueprint $table) {
-            $table->bigIncrements('food_id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->float('price');
             $table->integer('instock_qty');
