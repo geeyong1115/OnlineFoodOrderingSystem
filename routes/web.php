@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 // Route::resource('orders',OrderController::class);
 
-Route::get('/orders',[OrderController::class,'index']);
+Route::get('/orders',[OrderController::class,'index','approve']);
