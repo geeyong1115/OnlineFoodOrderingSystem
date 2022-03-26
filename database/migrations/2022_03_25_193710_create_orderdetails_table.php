@@ -20,8 +20,8 @@ class CreateOrderdetailsTable extends Migration
             $table->integer('quantity');
             $table->float('price');
             
-            $table->foreign('order_id')->references('order_id')->on('orders');
-            $table->foreign('food_id')->references('food_id')->on('foodbeverages');
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('food_id')->references('id')->on('foodbeverages');
         });
     }
 
