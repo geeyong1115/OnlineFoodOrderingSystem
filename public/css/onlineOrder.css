@@ -1,0 +1,102 @@
+/**
+ * @author YapYoonEn
+ */
+body{
+    font-family: cursive;
+    background-color: beige;
+}
+
+#base{
+    height: 100vh;
+    padding-top: 10px;
+}
+
+#base2{
+    margin: 0px 100px 0 100px;
+}
+
+.nav-item{
+    margin: 0 20px;
+}
+
+#icon{
+    color: lightgray;
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+#icon{
+    font-size: 150%;
+}
+
+.content-wrapper{
+    position: relative;
+    float: left;
+    width: 38%;
+    height: 190px;
+    margin: 4% 6% 0% 6%;
+    border-radius: 5px;
+}
+
+#buttondiv{
+    text-align: center;
+}
+
+#button{
+    border-radius: 5px;
+    background-color: white;
+    color: darkblue;
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 2px;
+    padding: 2px;
+    text-decoration: none;
+}
+
+#button:hover{
+    background: lightgray;
+}
+
+h2{
+    font-weight: bold;
+    text-align: center;
+    color: #ba8b00;
+    font-size: 60px;
+    background-color: #131313;
+}
+
+#name{
+    font-size: 105%;
+    font-weight: bold;
+    width: 100%;
+    display: block;
+    color: black;
+    opacity: 0.9;
+    text-align: center;
+}
+
+#desc{
+    font-size: 100%;
+    width: 100%;
+    display: block;
+    color: #4e555b;
+    opacity: 0.9;
+    text-align: center;
+}
+
+#price{
+    font-size: 100%;
+    font-weight: bold;
+    display: block;
+    color: goldenrod;
+    text-align: center;
+}
+
+.order{
+    text-align: center;
+    margin-top: 10px;
+}

@@ -1,0 +1,77 @@
+/**
+ * @author YapYoonEn
+ */
+body{
+    margin: 0;
+    max-width: 700px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cursive;
+    background-color: beige;
+}
+
+#content{
+    width: 100%;
+}
+
+h2{
+    font-family: cursive;
+    font-size: 50px;
+}
+
+#cart-btn{
+    margin-top: 50px;
+    display: inline;
+    background-color: orange;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2%;
+    font-size: 100%;
+    text-decoration: none;
+}
+
+#cart-btn:hover{
+    background-color: darkorange;
+}
+
+
+#cartContent{
+    padding:8% 2.5% 4% 2.5%;
+    width: 95%;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black; 
+    text-align: center;
+}
+
+td{
+    padding: 5px;
+    font-size: 80%;
+    border: 1px solid black;
+}
+
+th{
+    font-size: 90%;
+    border: 1px solid black;
+}
+
+#button{
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: darkorange;
+}
+
+#image{
+    margin-top: 20px;
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    background: transparent;
+}
