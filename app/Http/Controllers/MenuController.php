@@ -38,7 +38,7 @@ class MenuController extends Controller {
 
     public function menu_ta() {
         session(['method' => 'ta']);
-        include(app_path() . '/Http/XML/createOrderXML.php');
+        include(app_path() . '/Http/XML/FoodXMLGenerator.php');
         $o = session()->get('orderId');
         $cart = session()->get($o);
         if ($cart == null) {
