@@ -2,101 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\FoodBeverage;
+use App\Models\OrderDetails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+// use App\Models\OrderDetails;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.show',compact('orders'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-      
+        $orders = Order::where('status','0')->get();
+        return view('orders.index',compact('orders'));
+          
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function view($id)
     {
-        $orders = Order::all();
-        return view('orders.show',compact('orders'));
+        
+        $order_details =DB::table('order_details')
+                ->join('food_beverages', 'order_details.food_id', '=', 'food_beverages.id')
+                ->join('orders', 'order_details.order_id', '=', 'orders.id')
+                ->select('orders.status','food_beverages.name','order_details.quantity','order_details.price')
+                ->where('order_details.order_id','=',$id)
+                ->get();
+        
+        return view('orders.view',compact('order_details'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $order = Order::find($id);
-        return view('edit',compact('order','id'));
+        return view('orders.show',compact('order'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+       $orders = Order::find($id);
+       $orders->status = $request->input('order_status');
+       $orders->update();
+       
+       return redirect('orders')->with('status','Order Updated Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function approve($id){
-        $order = Order::find($id);
-        $order->status = "Approved";
-        $order->save();
-        // return redirect('orders');
-    }
-
-    public function decline($id){
-        $order = Order::find($id);
-        $order->status = "Declined";
-        $order->save();
-        // return redirect('orders');
+    public function orderHistory(){
+        $orders = Order::where('status','1')
+       
+        ->get();
+        return view('orders.order_history',compact('orders'));
     }
 }

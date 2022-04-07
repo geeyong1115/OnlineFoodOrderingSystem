@@ -16,8 +16,9 @@ class CreateFoodBeveragesTable extends Migration
         Schema::create('food_beverages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->decimal('price',9,3);
-            $table->string('instock_qty');
+            $table->string('desc');
+            $table->decimal('price',9,2);
+            $table->integer('instock_qty');
             $table->string('status');
             $table->timestamps();
         });

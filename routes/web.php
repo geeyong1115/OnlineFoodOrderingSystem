@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FoodBeverageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +20,17 @@ use App\Http\Controllers\OrderController;
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 
-// Route::resource('orders',OrderController::class);
+Route::middleware(['auth','isAdmin'])->group(function(){
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+     });
+    Route::resource('foodBeverages',FoodBeverageController::class);
+    Route::resource('orders',OrderController::class);
+    Route::get('view-order/{id}',[OrderController::class,'view']);
+    Route::put('update-order/{id}',[OrderController::class,'update']);
+    Route::get('order-history',[OrderController::class,'orderHistory']);
+});
 
-Route::get('/orders',[OrderController::class,'index','approve']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFoodBeveragesTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,15 @@ class CreateFoodBeveragesTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->string('password')->nullable();
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->tinyInteger('role_as')->default('0');
+            $table->string('remember_token')->nullable();
+            $table->timestamps();
+
         });
     }
 
@@ -26,6 +33,6 @@ class CreateFoodBeveragesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food_beverages');
+        Schema::dropIfExists('users');
     }
 }

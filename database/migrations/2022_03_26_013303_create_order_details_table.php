@@ -18,7 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('order_id');
             $table->integer('food_id');
             $table->integer('quantity');
-            $table->decimal('price',9,3);
+            $table->decimal('price',9,2);
             $table->timestamps();
         });
     }
