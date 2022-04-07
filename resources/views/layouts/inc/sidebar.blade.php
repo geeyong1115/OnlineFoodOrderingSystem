@@ -6,11 +6,11 @@
     
             <ul class="list-unstyled components">                
                 <li>
-                    <a href={{url('foodbeverages')}}>Food and Beverages</a>
+                    <a href={{url('foodBeverages')}}>Food and Beverages</a>
                 </li>
                 
                 <li>
-                    <a href="#">Orders</a>
+                    <a href={{url('orders')}}>Orders</a>
                 </li>
               
             </ul>

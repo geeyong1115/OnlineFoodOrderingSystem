@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('total_price',9,2);
             $table->integer('table_no')->nullable();

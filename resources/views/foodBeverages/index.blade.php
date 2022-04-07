@@ -7,8 +7,12 @@
             <div class="pull-left">
                 <h2>Food and Beverages</h2>
             </div>
+            
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('foodBeverages.create') }}"> Create New Food and Beverage</a>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-info" href="{{ url('xml') }}"> XML</a>
             </div>
         </div>
     </div>

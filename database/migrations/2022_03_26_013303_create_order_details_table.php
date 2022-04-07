@@ -13,7 +13,7 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('order_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
             $table->integer('food_id');
