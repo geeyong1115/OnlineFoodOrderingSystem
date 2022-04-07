@@ -17,9 +17,6 @@ use App\Http\Controllers\FoodBeverageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Auth::routes();
 
 Route::middleware(['auth','isAdmin'])->group(function(){
@@ -34,3 +31,18 @@ Route::middleware(['auth','isAdmin'])->group(function(){
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/', 'App\Http\Controllers\MenuController@index');
+Route::get('menu_di', 'App\Http\Controllers\MenuController@menu_di');
+Route::get('menu_ta', 'App\Http\Controllers\MenuController@menu_ta');
+Route::get('cart', 'App\Http\Controllers\MenuController@cart');
+Route::get('add-to-cart/{id}', 'App\Http\Controllers\MenuController@addToCart');
+Route::get('decrease-cart/{id}', 'App\Http\Controllers\MenuController@decrease');
+Route::get('increase-cart/{id}', 'App\Http\Controllers\MenuController@increase');
+Route::get('remove-from-cart/{id}', 'App\Http\Controllers\MenuController@remove');
+Route::get('placeOrder/{total}', 'App\Http\Controllers\MenuController@placeOrder');
+Route::get('bill', 'App\Http\Controllers\MenuController@bill');
+Route::get('invalid', 'App\Http\Controllers\MenuController@invalid');
+Route::get('orderRest','App\Http\Controllers\MenuController@rest1');
+Route::get('detailsRest','App\Http\Controllers\MenuController@rest2');

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author YapYoonEn
+ */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +15,9 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
+            $table->string('order_id');
             $table->integer('food_id');
             $table->integer('quantity');
             $table->decimal('price',9,2);
@@ -30,6 +32,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details');
+        Schema::connection('mysql2')->dropIfExists('order_details');
     }
 }
