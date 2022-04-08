@@ -2,9 +2,9 @@
 /**
  * @author YapYoonEn
  */
-use App\Models\FoodBeverages;
+use App\Models\FoodBeverage;
 
-$foodbeverages = FoodBeverages::all();
+$foodbeverages = FoodBeverage::all();
 $xml = new \XMLWriter();
 $xml->openMemory();
 $xml->setIndent(true);
