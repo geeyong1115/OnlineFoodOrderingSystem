@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\FoodBeverage;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,11 +30,10 @@ class OrderController extends Controller
      */
     public function view($id)
     {
-        
-        $order_details =DB::table('order_details')
-                ->join('food_beverages', 'order_details.food_id', '=', 'food_beverages.id')
+        $order_details =DB::connection('mysql2')->table('order_details')
+                ->join('onlinefoodorderingsystem.food_beverages as fb', 'order_details.food_id', '=', 'fb.id')
                 ->join('orders', 'order_details.order_id', '=', 'orders.id')
-                ->select('orders.status','food_beverages.name','order_details.quantity','order_details.price')
+                ->select('orders.status','fb.name','order_details.quantity','order_details.price')
                 ->where('order_details.order_id','=',$id)
                 ->get();
         

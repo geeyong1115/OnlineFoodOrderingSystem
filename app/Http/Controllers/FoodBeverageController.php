@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FoodBeverage;
+use App\Models\FoodBeverages;
 use Illuminate\Http\Request;
 
 class FoodBeverageController extends Controller
@@ -14,7 +14,7 @@ class FoodBeverageController extends Controller
      */
     public function index()
     {
-        $foodBeverages = FoodBeverage::latest()->paginate(5);
+        $foodBeverages = FoodBeverages::latest()->paginate(5);
     
         return view('foodBeverages.index',compact('foodBeverages'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -46,7 +46,7 @@ class FoodBeverageController extends Controller
             'instock_qty' => 'required',
             'status' => 'required',
         ]);
-        FoodBeverage::create($request->all());
+        FoodBeverages::create($request->all());
      
         return redirect()->route('foodBeverages.index')
                         ->with('success','Food and Beverages created successfully.');
@@ -55,10 +55,10 @@ class FoodBeverageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FoodBeverage  $foodBeverage
+     * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function show(FoodBeverage $foodBeverage)
+    public function show(FoodBeverages $foodBeverage)
     {
         return view('foodBeverages.show',compact('foodBeverage'));
 
@@ -67,10 +67,10 @@ class FoodBeverageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FoodBeverage  $foodBeverage
+     * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function edit(FoodBeverage $foodBeverage)
+    public function edit(FoodBeverages $foodBeverage)
     {
         return view('foodBeverages.edit',compact('foodBeverage'));
 
@@ -80,10 +80,10 @@ class FoodBeverageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FoodBeverage  $foodBeverage
+     * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FoodBeverage $foodBeverage)
+    public function update(Request $request, FoodBeverages $foodBeverage)
     {
         $request->validate([
             'name' => 'required',
@@ -102,10 +102,10 @@ class FoodBeverageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FoodBeverage  $foodBeverage
+     * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FoodBeverage $foodBeverage)
+    public function destroy(FoodBeverages $foodBeverage)
     {
         $foodBeverage->delete();
     

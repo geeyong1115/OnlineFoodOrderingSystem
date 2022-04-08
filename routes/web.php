@@ -29,8 +29,8 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('view-order/{id}',[OrderController::class,'view']);
     Route::put('update-order/{id}',[OrderController::class,'update']);
     Route::get('order-history',[OrderController::class,'orderHistory']);
-    Route::get('/xml', [SitemapXmlController::class, 'index']);
-    Route::get('/readxml', [SitemapXmlController::class, 'read']);
+    Route::get('/xml-foodBeverages', [SitemapXmlController::class, 'xml_foodBeverages']);
+    Route::get('/xml-orderDetails', [SitemapXmlController::class, 'xml_orderDetails']);
 
 
 });

@@ -9,6 +9,9 @@
             <div class="pull-right">
                 <a class="btn btn-warning" href="{{ 'order-history' }}">Order History</a>
             </div>
+            <div class="pull-right">
+                <a class="btn btn-info" href="{{ url('xml-orderDetails') }}"> XML</a>
+            </div>
         </div>
     </div>
    
