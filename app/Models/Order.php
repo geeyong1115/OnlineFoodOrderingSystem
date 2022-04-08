@@ -84,7 +84,7 @@ class Order extends Model {
 
 class dineIn extends Order {
 
-    public $table_no;
+    private $table_no;
 
     function set_table_no($table_no) {
         $this->table_no = $table_no;
