@@ -21,7 +21,6 @@ class SitemapXmlController extends Controller
         ->join('onlinefoodorderingsystem.food_beverages as fb', 'order_details.food_id', '=', 'fb.id')
         ->join('orders', 'order_details.order_id', '=', 'orders.id')
         ->get();
-        // dd($order_details);
 
         return response()->view('xml.orderDetails', [
             'order_details' => $order_details

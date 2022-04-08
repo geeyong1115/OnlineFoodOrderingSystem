@@ -36,7 +36,7 @@ class OrderController extends Controller
                 ->select('orders.status','fb.name','order_details.quantity','order_details.price')
                 ->where('order_details.order_id','=',$id)
                 ->get();
-        
+                
         return view('orders.view',compact('order_details'));
 
     }

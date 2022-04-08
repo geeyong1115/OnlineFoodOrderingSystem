@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderAPIController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\SitemapXmlController;
 use App\Http\Controllers\FoodBeverageController;
@@ -33,15 +34,14 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('order-history',[OrderController::class,'orderHistory']);
     Route::get('/xml-foodBeverages', [SitemapXmlController::class, 'xml_foodBeverages']);
     Route::get('/xml-orderDetails', [SitemapXmlController::class, 'xml_orderDetails']);
-
 });
-Route::get('api/foodBeverages/showAll',[FoodBeverageAPIController::class,'index']);
-Route::post('api/foodBeverages/create',[FoodBeverageAPIController::class,'store']);
-Route::get('api/foodBeverages/find/{id}',[FoodBeverageAPIController::class,'find']);
-Route::post('api/foodBeverages/find/{name}',[FoodBeverageAPIController::class,'findByName']);
-Route::post('api/foodBeverages/update/{id}',[FoodBeverageAPIController::class,'update']);
-Route::post('api/foodBeverages/delete/{id}',[FoodBeverageAPIController::class,'destroy']);
-
+  //API for food beverages
+  Route::get('api/foodBeverages/showAll',[FoodBeverageAPIController::class,'index']);
+  Route::post('api/foodBeverages/create',[FoodBeverageAPIController::class,'store']);
+  Route::get('api/foodBeverages/find/{id}',[FoodBeverageAPIController::class,'find']);
+  Route::post('api/foodBeverages/find/{name}',[FoodBeverageAPIController::class,'findByName']);
+  Route::post('api/foodBeverages/update/{id}',[FoodBeverageAPIController::class,'update']);
+  Route::post('api/foodBeverages/delete/{id}',[FoodBeverageAPIController::class,'destroy']);
 
 //////////////////////
 
