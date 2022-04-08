@@ -7,18 +7,18 @@ use App\Http\StrategyDesignPattern\TakeAwayPrice as TA;
 use App\Http\StrategyDesignPattern\DineInPrice as DI;
 
 class TotalPriceContext {
-    private $sub;
+    private $method;
     
     public function getOrderMethod($id){
         $order = Order::where('id', $id)->value('table_no');
         if($order == null){
-            $this->sub = new TA;
+            $this->method = new TA;
         } else {
-            $this->sub = new DI;
+            $this->method = new DI;
         }
     }
     
     public function callCalTotal($subtotal){
-        $this->sub->calTotalPrice($subtotal);
+        $this->method->calTotalPrice($subtotal);
     }
 }
