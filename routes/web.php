@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\SitemapXmlController;
 use App\Http\Controllers\FoodBeverageController;
+use App\Http\Controllers\FoodBeverageAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\FoodBeverageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -32,10 +34,16 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/xml-foodBeverages', [SitemapXmlController::class, 'xml_foodBeverages']);
     Route::get('/xml-orderDetails', [SitemapXmlController::class, 'xml_orderDetails']);
 
-
 });
+Route::get('api/foodBeverages/showAll',[FoodBeverageAPIController::class,'index']);
+Route::post('api/foodBeverages/create',[FoodBeverageAPIController::class,'store']);
+Route::get('api/foodBeverages/find/{id}',[FoodBeverageAPIController::class,'find']);
+Route::post('api/foodBeverages/find/{name}',[FoodBeverageAPIController::class,'findByName']);
+Route::post('api/foodBeverages/update/{id}',[FoodBeverageAPIController::class,'update']);
+Route::post('api/foodBeverages/delete/{id}',[FoodBeverageAPIController::class,'destroy']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//////////////////////
 
 
 Route::get('/', 'App\Http\Controllers\MenuController@index');

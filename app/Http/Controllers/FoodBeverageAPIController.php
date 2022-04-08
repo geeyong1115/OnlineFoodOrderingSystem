@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FoodBeverages;
 use Illuminate\Http\Request;
+use App\Models\FoodBeverages;
 
-class FoodBeverageController extends Controller
+class FoodBeverageAPIController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -15,10 +15,9 @@ class FoodBeverageController extends Controller
     public function index()
     {
 
-        $foodBeverages = FoodBeverages::latest()->paginate(5);
-    
-        return view('foodBeverages.index',compact('foodBeverages'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $foodBeverages = FoodBeverages::all();
+
+        return response()->json($foodBeverages);
     }
 
     /**
@@ -47,10 +46,7 @@ class FoodBeverageController extends Controller
             'instock_qty' => 'required',
             'status' => 'required',
         ]);
-        FoodBeverages::create($request->all());
-     
-        return redirect()->route('foodBeverages.index')
-                        ->with('success','Food and Beverages created successfully.');
+        return FoodBeverages::create($request->all());
     }
 
     /**
@@ -59,22 +55,27 @@ class FoodBeverageController extends Controller
      * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function show(FoodBeverages $foodBeverage)
+    public function find($id)
     {
-        return view('foodBeverages.show',compact('foodBeverage'));
-
+        $foodBeverage = FoodBeverages::find($id);
+        return response()->json($foodBeverage);
     }
-
+    public function findByName($name)
+    {
+        return FoodBeverages::where('name','like','%'.$name)->get();
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function edit(FoodBeverages $foodBeverage)
+    public function edit(Request $req, $id)
     {
-        return view('foodBeverages.edit',compact('foodBeverage'));
 
+        $foodBeverage = FoodBeverages::find($id);
+        $foodBeverage->update($req->all());
+        return $foodBeverage;
     }
 
     /**
@@ -84,20 +85,13 @@ class FoodBeverageController extends Controller
      * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FoodBeverages $foodBeverage)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'desc' => 'required',
-            'instock_qty' => 'required',
-            'status' => 'required',
-        ]);
-    
+        $foodBeverage = FoodBeverages::find($id);
+
         $foodBeverage->update($request->all());
-    
-        return redirect()->route('foodBeverages.index')
-                        ->with('success','Food and beverage updated successfully');
+        return $foodBeverage;
+       
     }
 
     /**
@@ -106,11 +100,11 @@ class FoodBeverageController extends Controller
      * @param  \App\Models\FoodBeverages  $foodBeverage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FoodBeverages $foodBeverage)
+    public function destroy($id)
     {
-        $foodBeverage->delete();
-    
-        return redirect()->route('foodBeverages.index')
-                        ->with('success','Food and beverage deleted successfully');
+        $foodBeverage = FoodBeverages::destroy($id);
+
+        return response()->json($foodBeverage);
+
     }
 }
