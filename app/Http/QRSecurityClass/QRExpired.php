@@ -21,7 +21,7 @@ class QRExpired {
     }
     
     public function invalid() {
-        if(isset($_GET['tno'])) {
+        if(isset($_GET['tno']) && isset($_GET['oid'])) {
             return "valid";
         } else {
             ?><script>window.location = 'invalid';</script><?php
