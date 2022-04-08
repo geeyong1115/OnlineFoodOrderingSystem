@@ -9,7 +9,7 @@ use App\Http\StrategyDesignPattern\DineInPrice as DI;
 class TotalPriceContext {
     private $sub;
     
-    public function initInstance($id){
+    public function getOrderMethod($id){
         $order = Order::where('id', $id)->value('table_no');
         if($order == null){
             $this->sub = new TA;
@@ -18,7 +18,7 @@ class TotalPriceContext {
         }
     }
     
-    public function sub($subtotal){
+    public function callCalTotal($subtotal){
         $this->sub->calTotalPrice($subtotal);
     }
 }

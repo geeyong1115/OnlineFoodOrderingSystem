@@ -61,8 +61,8 @@ $o = session()->get('orderId');
                         <td id="price">
                             <?php
                             $context = new TotalPriceContext();
-                            $context->initInstance($o);
-                            echo $context->sub($subtotal);
+                            $context->getOrderMethod($o);
+                            echo $context->callCalTotal($subtotal);
                             ?>
                         </td>
                     </tr>
